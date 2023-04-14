@@ -29,8 +29,20 @@ describe("strings", () => {
     // expect("team").toMatch("am");
   });
 });
+
 describe("arrays", () => {
   const shoppingList = ["apple", "banana", "pears", "berry"];
 
   expect(shoppingList).toContain("berry");
+});
+
+//exception example
+function compileAndroidCode() {
+  throw new Error("u are using the wrong the JDK");
+}
+describe("exceptions", () => {
+  it("compling andriod goes as expected", () => {
+    expect(() => compileAndroidCode().toThrow("u are using the wrong the JDK"));
+    //toThrow(Error) or toThrow() both works
+  });
 });
