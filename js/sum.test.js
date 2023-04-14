@@ -29,3 +29,8 @@ describe("strings", () => {
     // expect("team").toMatch("am");
   });
 });
+describe("arrays", () => {
+  const shoppingList = ["apple", "banana", "pears", "berry"];
+
+  expect(shoppingList).toContain("berry");
+});
