@@ -19,5 +19,8 @@
   "homepage": "https://github.com/jxu710/js-testing-jest#readme",
   "devDependencies": {
     "jest": "^29.5.0"
+  },
+  "dependencies": {
+    "axios": "^1.3.5"
   }
 }
