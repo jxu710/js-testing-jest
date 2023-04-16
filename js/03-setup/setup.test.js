@@ -1,7 +1,19 @@
 let animals = ["zebra", "elephant", "bear", "tiger"];
 
+//this will run only ONCE before all the testing
+
+beforeAll(() => {
+  console.log("before all");
+});
+
 //this will run before each testing
 beforeEach(() => {
+  animals = ["zebra", "elephant", "bear", "tiger"];
+});
+
+//run after each testing
+
+afterEach(() => {
   animals = ["zebra", "elephant", "bear", "tiger"];
 });
 
