@@ -14,4 +14,6 @@ it("mock callback", () => {
 
   //[ call1 , call2 ]
   expect(mockCalledback.mock.calls[0][0]).toBe(0);
+
+  expect(mockCalledback.mock.results[0].value).toBe(42);
 });
