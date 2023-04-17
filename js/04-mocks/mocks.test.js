@@ -17,3 +17,10 @@ it("mock callback", () => {
 
   expect(mockCalledback.mock.results[0].value).toBe(42);
 });
+
+it("mock return", () => {
+  const mock = jest.fn();
+  mock.mockReturnValueOnce(true);
+  const results = mock();
+  expect(results).toBe(true);
+});
