@@ -5,6 +5,8 @@ const fetchData = async (id) => {
     `https://jsonplaceholder.typicode.com/todos/${id}`
   );
 
+  console.log(results);
+
   return results.data;
 };
 
@@ -43,5 +45,6 @@ it("mock axios", async () => {
       todo: "to get grocery",
     },
   });
-  const results = await fetchData();
+  const results = await fetchData(11);
+  expect(results.todo).toBe("to get grocery");
 });
