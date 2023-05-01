@@ -1,7 +1,20 @@
-import logo from "./logo.svg";
 import "./App.css";
+import { useState } from "react";
 
 function App() {
+  const [signupInput, setSignupInput] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (e) => {
+    setSignupInput({
+      ...signupInput,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <div className="container my-5">
       <form>
@@ -15,6 +28,8 @@ function App() {
             id="email"
             name="email"
             className="form-control"
+            value={signupInput.email}
+            onChange={handleChange}
           />
         </div>
         <div className="mb-3">
@@ -27,6 +42,8 @@ function App() {
             id="password"
             name="password"
             className="form-control"
+            value={signupInput.password}
+            onChange={handleChange}
           />
         </div>
         <div className="mb-3">
@@ -37,10 +54,14 @@ function App() {
           <input
             type="password"
             id="confirm-password"
-            name="confirm-password"
+            name="confirmPassword"
             className="form-control"
+            value={signupInput.confirmPassword}
+            onChange={handleChange}
           />
         </div>
+
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
