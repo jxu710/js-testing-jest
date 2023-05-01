@@ -53,7 +53,7 @@ test("should show email Error message on invalid email", () => {
   render(<App />);
   const emailErrorElement = screen.queryByText(
     /the email you input is invalid/i
-  );
+  ); // null
   const emailInputElement = screen.getByRole("textbox", {
     name: /email/i,
   });
@@ -63,7 +63,9 @@ test("should show email Error message on invalid email", () => {
 
   expect(emailErrorElement).not.toBeInTheDocument();
 
-  userEvent.type(emailInputElement, "whateveremail.com");
+  userEvent.type(emailInputElement, "whateveremail");
   userEvent.click(submitBtnElement);
-  expect(emailErrorElement).toBeInTheDocument();
+
+  const emailErrorElementAgain = screen.queryByTestId("errorMessage");
+  expect(emailErrorElementAgain).toBeInTheDocument();
 });
