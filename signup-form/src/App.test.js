@@ -48,3 +48,16 @@ test("should be able to type a Confirm password", () => {
   userEvent.type(confirmPasswordInputElement, "password!");
   expect(confirmPasswordInputElement.value).toBe("password!");
 });
+
+test("should show email Error message on invalid email", () => {
+  render(<App />);
+  const emailInputElement = screen.getByRole("textbox", {
+    name: /email/i,
+  });
+
+  userEvent.type(emailInputElement, "whateveremail.com");
+  const submitBtnElement = screen.getByRole("button", {
+    name: /submit/i,
+  });
+  userEvent.click(submitBtnElement);
+});
