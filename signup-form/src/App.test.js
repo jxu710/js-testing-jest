@@ -75,5 +75,11 @@ test("should show password error if password is less than 5 characters", () => {
   const emailInputElement = screen.getByRole("textbox", {
     name: /email/i,
   });
+  const passwordErrorElement = screen.queryByText(
+    /the password you entered should contain 5 or more characters/i
+  );
   userEvent.type(emailInputElement, "whateveremail@gmail.com");
+  // userEvent.type(passwordErrorElement, "whateveremail@gmail.com");
+
+  expect(passwordErrorElement).not.toBeInTheDocument();
 });
