@@ -69,3 +69,11 @@ test("should show email Error message on invalid email", () => {
   const emailErrorElementAgain = screen.queryByTestId("errorMessage");
   expect(emailErrorElementAgain).toBeInTheDocument();
 });
+
+test("should show password error if password is less than 5 characters", () => {
+  render(<App />);
+  const emailInputElement = screen.getByRole("textbox", {
+    name: /email/i,
+  });
+  userEvent.type(emailInputElement, "whateveremail@gmail.com");
+});
