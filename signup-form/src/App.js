@@ -22,16 +22,20 @@ function App() {
 
   const handleClick = (e) => {
     e.preventDefault();
+
     if (!validator.isEmail(signupInput.email)) {
       return setError("the email you input is invalid");
     } else if (signupInput.password.length < 5) {
       return setError(
-        "the password you entered should contain 5 or more characters"
+        "The password you entered should contain 5 or more characters."
       );
-    } else if (signupInput.password != signupInput.confirmPassword) {
-      return setError("the password don't match, try again");
+    } else if (signupInput.password !== signupInput.confirmPassword) {
+      return setError("The password don't match, try again");
     }
+
+    setError(""); // Clear the error state when the form is submitted successfully
   };
+
   return (
     <div className="container my-5">
       <form onClick={handleClick}>
@@ -77,11 +81,7 @@ function App() {
             onChange={handleChange}
           />
         </div>
-        {error && (
-          <p className="text-danger" data-testid="errorMessage">
-            {error}
-          </p>
-        )}
+        {error && <p className="text-danger">{error}</p>}
 
         <button type="submit" className="btn btn-primary">
           Submit
