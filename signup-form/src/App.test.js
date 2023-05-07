@@ -141,9 +141,9 @@ test("should show No error message if every input is valid", async () => {
     name: /submit/i,
   });
 
-  await userEvent.type(emailInputElement, "whateveremail@gmail.com");
-  await userEvent.type(passwordInputElement, "12345");
-  await userEvent.type(confirmPasswordInputElement, "12345");
+  userEvent.type(emailInputElement, "whateveremail@gmail.com");
+  userEvent.type(passwordInputElement, "12345");
+  userEvent.type(confirmPasswordInputElement, "12345");
 
   await userEvent.click(submitBtnElement);
 
