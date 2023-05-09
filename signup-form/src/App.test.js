@@ -24,6 +24,14 @@ const typeIntoForm = ({ email, password, confirmPassword }) => {
   if (confirmPassword) {
     userEvent.type(confirmPasswordInputElement, confirmPassword);
   }
+
+  // return so the later test blocks can access below elements
+
+  return {
+    emailInputElement,
+    passwordInputElement,
+    confirmPasswordInputElement,
+  };
 };
 
 test("inputs should be initially empty", () => {
@@ -41,12 +49,20 @@ test("inputs should be initially empty", () => {
 });
 
 test("should be able to type an email", () => {
-  const emailInputElement = screen.getByRole("textbox", {
-    name: /email/i,
+  // const emailInputElement = screen.getByRole("textbox", {
+  //   name: /email/i,
+  // });
+
+  // userEvent.type(emailInputElement, "selena@gmail.com");
+  const { emailInputElement } = typeIntoForm({
+    email: "selena@gmail.com",
   });
 
-  userEvent.type(emailInputElement, "selena@gmail.com");
-  expect(emailInputElement.value).toBe("selena@gmail.com");
+  //或者
+  // const  result  = typeIntoForm({
+  //   email: "selena@gmail.com",
+  // }).emailInputElement;
+  // expect(result.value).toBe("selena@gmail.com");
 });
 
 test("should be able to type a password", () => {
