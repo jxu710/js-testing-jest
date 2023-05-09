@@ -6,6 +6,26 @@ beforeEach(() => {
   render(<App />);
 });
 
+const typeIntoForm = ({ email, password, confirmPassword }) => {
+  const emailInputElement = screen.getByRole("textbox", {
+    name: /email/i,
+  });
+  const passwordInputElement = screen.getByLabelText("Password");
+  const confirmPasswordInputElement =
+    screen.getByLabelText(/confirm password/i);
+  if (email) {
+    userEvent.type(emailInputElement, email);
+  }
+
+  if (password) {
+    userEvent.type(passwordInputElement, password);
+  }
+
+  if (confirmPassword) {
+    userEvent.type(confirmPasswordInputElement, confirmPassword);
+  }
+};
+
 test("inputs should be initially empty", () => {
   // 1) Rendering the component we want to test
 
