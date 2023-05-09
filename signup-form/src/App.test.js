@@ -76,10 +76,14 @@ test("should be able to type a password", () => {
 });
 
 test("should be able to type a Confirm password", () => {
-  const confirmPasswordInputElement =
-    screen.getByLabelText(/confirm password/i);
+  // const confirmPasswordInputElement =
+  //   screen.getByLabelText(/confirm password/i);
 
-  userEvent.type(confirmPasswordInputElement, "password!");
+  // userEvent.type(confirmPasswordInputElement, "password!");
+
+  const { confirmPasswordInputElement } = typeIntoForm({
+    confirmPassword: "password!",
+  });
   expect(confirmPasswordInputElement.value).toBe("password!");
 });
 
