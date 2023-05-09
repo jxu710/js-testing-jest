@@ -2,15 +2,13 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "./App";
 
-// test("renders learn react link", () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/learn react/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
+beforeEach(() => {
+  render(<App />);
+});
 
 test("inputs should be initially empty", () => {
   // 1) Rendering the component we want to test
-  render(<App />);
+
   // 2) finding the elements
   const emailInputElement = screen.getByRole("textbox");
   const passwordInputElement = screen.getByLabelText("Password");
@@ -23,7 +21,6 @@ test("inputs should be initially empty", () => {
 });
 
 test("should be able to type an email", () => {
-  render(<App />);
   const emailInputElement = screen.getByRole("textbox", {
     name: /email/i,
   });
@@ -33,7 +30,6 @@ test("should be able to type an email", () => {
 });
 
 test("should be able to type a password", () => {
-  render(<App />);
   const passwordInputElement = screen.getByLabelText("Password");
 
   userEvent.type(passwordInputElement, "password!");
@@ -41,7 +37,6 @@ test("should be able to type a password", () => {
 });
 
 test("should be able to type a Confirm password", () => {
-  render(<App />);
   const confirmPasswordInputElement =
     screen.getByLabelText(/confirm password/i);
 
@@ -50,7 +45,6 @@ test("should be able to type a Confirm password", () => {
 });
 
 test("should show email Error message on invalid email", () => {
-  render(<App />);
   const emailErrorElement = screen.queryByText(
     /the email you input is invalid/i
   ); // null
@@ -73,7 +67,6 @@ test("should show email Error message on invalid email", () => {
 });
 
 test("should show password error if password is less than 5 characters", () => {
-  render(<App />);
   const emailInputElement = screen.getByRole("textbox", {
     name: /email/i,
   });
@@ -98,7 +91,6 @@ test("should show password error if password is less than 5 characters", () => {
 });
 
 test("should show Confirm password error if password don't match", () => {
-  render(<App />);
   const emailInputElement = screen.getByRole("textbox", {
     name: /email/i,
   });
@@ -127,7 +119,6 @@ test("should show Confirm password error if password don't match", () => {
 });
 
 test("should show No error message if every input is valid", async () => {
-  render(<App />);
   const emailInputElement = screen.getByRole("textbox", {
     name: /email/i,
   });
