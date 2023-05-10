@@ -176,23 +176,28 @@ test("should show Confirm password error if password don't match", () => {
 });
 
 test("should show No error message if every input is valid", async () => {
-  const emailInputElement = screen.getByRole("textbox", {
-    name: /email/i,
-  });
+  // const emailInputElement = screen.getByRole("textbox", {
+  //   name: /email/i,
+  // });
 
-  const passwordInputElement = screen.getByLabelText("Password");
+  // const passwordInputElement = screen.getByLabelText("Password");
 
-  const confirmPasswordInputElement =
-    screen.getByLabelText(/confirm password/i);
+  // const confirmPasswordInputElement =
+  //   screen.getByLabelText(/confirm password/i);
 
   const submitBtnElement = screen.getByRole("button", {
     name: /submit/i,
   });
 
-  userEvent.type(emailInputElement, "whateveremail@gmail.com");
-  userEvent.type(passwordInputElement, "12345");
-  userEvent.type(confirmPasswordInputElement, "12345");
+  // userEvent.type(emailInputElement, "whateveremail@gmail.com");
+  // userEvent.type(passwordInputElement, "12345");
+  // userEvent.type(confirmPasswordInputElement, "12345");
 
+  typeIntoForm({
+    email: "whateveremail@gmail.com",
+    password: "12345",
+    confirmPassword: "12345",
+  });
   await userEvent.click(submitBtnElement);
 
   const emailErrorElement = screen.queryByText(
