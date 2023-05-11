@@ -35,6 +35,14 @@ const typeIntoForm = ({ email, password, confirmPassword }) => {
   };
 };
 
+const clickOnSubmitButton = () => {
+  const submitBtnElement = screen.getByRole("button", {
+    name: /submit/i,
+  });
+
+  userEvent.click(submitBtnElement);
+};
+
 test("inputs should be initially empty", () => {
   // 1) Rendering the component we want to test
 
@@ -80,14 +88,11 @@ test("should show email Error message on invalid email", () => {
     /the email you input is invalid/i
   ); // null
 
-  const submitBtnElement = screen.getByRole("button", {
-    name: /submit/i,
-  });
-
   expect(emailErrorElement).not.toBeInTheDocument();
 
   typeIntoForm({ email: "whateveremail" });
-  userEvent.click(submitBtnElement);
+
+  clickOnSubmitButton();
 
   const emailErrorElementAgain = screen.queryByText(
     "the email you input is invalid"
@@ -100,16 +105,13 @@ test("should show password error if password is less than 5 characters", () => {
     /the password you entered should contain 5 or more characters/i
   );
 
-  const submitBtnElement = screen.getByRole("button", {
-    name: /submit/i,
-  });
   expect(passwordErrorElement).not.toBeInTheDocument();
 
   typeIntoForm({
     email: "whateveremail@gmail.com",
     password: "123",
   });
-  userEvent.click(submitBtnElement);
+  clickOnSubmitButton();
   const passwordErrorElementAgain = screen.queryByText(
     /the password you entered should contain 5 or more characters/i
   );
@@ -121,9 +123,6 @@ test("should show Confirm password error if password don't match", () => {
     /the password don't match, try again/i
   );
 
-  const submitBtnElement = screen.getByRole("button", {
-    name: /submit/i,
-  });
   expect(confirmPasswordErrorElement).not.toBeInTheDocument();
 
   typeIntoForm({
@@ -131,7 +130,7 @@ test("should show Confirm password error if password don't match", () => {
     password: "12345",
     confirmPassword: "12345",
   });
-  userEvent.click(submitBtnElement);
+  clickOnSubmitButton();
   const confirmPasswordErrorElementAgain = screen.queryByText(
     /the password don't match, try again/i
   );
@@ -139,16 +138,12 @@ test("should show Confirm password error if password don't match", () => {
 });
 
 test("should show No error message if every input is valid", async () => {
-  const submitBtnElement = screen.getByRole("button", {
-    name: /submit/i,
-  });
-
   typeIntoForm({
     email: "whateveremail@gmail.com",
     password: "12345",
     confirmPassword: "12345",
   });
-  await userEvent.click(submitBtnElement);
+  await clickOnSubmitButton();
 
   const emailErrorElement = screen.queryByText(
     /the email you input is invalid/i
