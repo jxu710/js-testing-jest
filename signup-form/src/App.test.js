@@ -82,6 +82,12 @@ describe("test the app component", () => {
   });
 
   describe("tests for error handling", () => {
+    // 下面这个beforeEach 会run 在这个describe block里的所有test
+
+    // beforeEach(() => {
+    //   console.log("hello");
+    // });
+
     test("should show email Error message on invalid email", () => {
       // const emailErrorElement = screen.queryByText(
       //   /the email you input is invalid/i
